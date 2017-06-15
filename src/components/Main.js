@@ -20,7 +20,6 @@ class Main extends React.Component{
         fetch (`http://api.react.beer/v2/search?q=${searchTerm}&type=beer`)
             .then(data=>data.json())
             .then((beers)=>{
-                console.log(beers);
                 const filteredBeers =beers.data.filter(beer => !!beer.labels);
                 this.setState({beers:filteredBeers,loading:false});
             })
@@ -32,8 +31,6 @@ class Main extends React.Component{
      }
 
     incrementBeers =() =>{
-
-        console.log("HI");
         const beerAmount = this.state.numBeers+1;
         this.setState({numBeers:beerAmount});
     }
@@ -45,7 +42,6 @@ class Main extends React.Component{
         return(
         <div className="wrapper">
         <Header siteName="Online Beer"/>
-
         <search />
         <Results beers={this.state.beers} />
         </div>

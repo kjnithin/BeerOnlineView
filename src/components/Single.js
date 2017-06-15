@@ -19,7 +19,6 @@ class Single extends React.Component{
     fetch(`http://api.react.beer/v2/beer/${beerId}`)
       .then(data => data.json())
       .then(res => {
-        console.log(res.data);
         this.setState({ beer: res.data, loading: false });
       });
   }
@@ -47,6 +46,9 @@ class Single extends React.Component{
         }
 
         const {beer} = this.state;
+        const beerName = beer.style ? beer.style.name : beer.name;
+        const beerDescription = beer.style ? beer.style.description : beer.description;
+
         return(
             <div>
             <Header siteName="Online Beer"/>
@@ -63,14 +65,11 @@ class Single extends React.Component{
                  </div>
 
                  <div className="style">
-                    <h3>More Info on {beer.style.name}</h3>
-                    <p>{beer.style.description}</p>
+                    <h3>More Info on {beerName}</h3>
+                    <p>{beerDescription}</p>
                  </div>
-
-             </div>
-
-
-            </div>
+               </div>
+               </div>
             );
     }
 }
